@@ -19,6 +19,7 @@
         direction="ltl"
         size="100%"
         :with-header="false"
+        ref="navDrawer"
       >
         <el-icon :size="20" color="#000000" @click="handleClose"><Close /></el-icon>
     </el-drawer>
@@ -27,14 +28,23 @@
 
 <script>
 import { defineComponent,ref } from "vue";
+import 'assets/css/media.less'
+
 export default defineComponent({
   name: "_header",
   setup() {
     const table = ref(false)
+    const navDrawer = ref()
+
+    const handleClose = () => {
+      navDrawer.value.close()
+    }
 
 
     return{
-      table
+      table,
+      navDrawer,
+      handleClose
     }
   },
 });
@@ -42,6 +52,8 @@ export default defineComponent({
 
 <style lang="less" scoped>
 #header{
+  border-bottom: 1px solid #ddd;
+
   .header_left{
     display: flex;
     align-items: center;
