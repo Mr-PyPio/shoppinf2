@@ -14,24 +14,33 @@
             <a href=""><el-icon :size="20" color="#000000"><ShoppingCartFull /></el-icon></a>
         </el-col>
     </el-row>
-     <el-drawer style="width: 80%"
+     <el-drawer style="width: 75%;background: linear-gradient(90deg, rgba(245, 224, 230, 0.85) 0%, rgba(255, 255, 255, 0.85) 100%);"
         v-model="table"
         direction="ltl"
         size="100%"
         :with-header="false"
         ref="navDrawer"
       >
-        <el-icon :size="20" color="#000000" @click="handleClose"><Close /></el-icon>
+        <el-icon :size="20" color="#000000" @click="handleClose" 
+        :style="draweCloseStyle"
+        ><Close /></el-icon>
+
+        <MeunTop></MeunTop>
     </el-drawer>
   </div>
 </template>
 
 <script>
 import { defineComponent,ref } from "vue";
-import 'assets/css/media.less'
+import {getWindowType} from 'assets/js/common.js'
+import MeunTop from 'components/header/meunTop.vue'
 
 export default defineComponent({
   name: "_header",
+  components : {
+    MeunTop,
+  }
+  ,
   setup() {
     const table = ref(false)
     const navDrawer = ref()
@@ -40,11 +49,21 @@ export default defineComponent({
       navDrawer.value.close()
     }
 
+    const isMobile = getWindowType()
+
+    const draweCloseStyle = ref({
+        'position' : 'fixed',
+        'background' : '#fff',
+        'right' : isMobile ? '16%': `${(window.innerWidth - 750)  / 2}px`,
+        'top' : '8px'
+    })
 
     return{
       table,
       navDrawer,
-      handleClose
+      handleClose,
+      isMobile,
+      draweCloseStyle
     }
   },
 });

@@ -1,27 +1,29 @@
 <template>
-    <div id="top_banner">
+    <div id="special_banner" style="margin: 16px 12px;width: calc(100% - 24px)">
         <swiper
             :modules="modules"
-            :slides-per-view="1"
+            :slides-per-view="2"
+            :space-between="10"
             navigation
+            autoHeight
             @swiper="onSwiper"
             @slideChange="onSlideChange"
         >
             <swiper-slide v-for="item in bannerImgData" :key="item.key">
                 <a :href="item.link">
-                    <img v-lazy="item.image" :alt="item.imageSize.scale"  style="width: 100%;">
-                </a>
+                        <img v-lazy="item.image" :alt="item.imageSize.scale"  style="width: 100%;">
+                    </a>
             </swiper-slide>
         </swiper>
     </div>
 </template>
 
 <script>
-import {ref} from 'vue'
+import { defineComponent,ref } from 'vue'
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 
-export default {
+export default defineComponent({
     components: {
         Swiper,
         SwiperSlide,
@@ -31,18 +33,42 @@ export default {
         const bannerImg = ref([
             {
                 key: 1,
-                image: require('assets/image/indexBanner.gif'),
+                image: require('assets/image/special_banner1.png'),
                 link: 'html',
             },
             {
                 key: 2,
-                image: require('assets/image/indexBanner.gif'),
+                image: require('assets/image/special_banner2.png'),
                 link: 'html',
 
             },
             {
                 key: 3,
-                image: require('assets/image/indexBanner.gif'),
+                image: require('assets/image/special_banner1.png'),
+                link: 'html',
+
+            },
+                        {
+                key: 3,
+                image: require('assets/image/special_banner2.png'),
+                link: 'html',
+
+            },
+                        {
+                key: 3,
+                image: require('assets/image/special_banner1.png'),
+                link: 'html',
+
+            },
+                        {
+                key: 3,
+                image: require('assets/image/special_banner2.png'),
+                link: 'html',
+
+            },
+                        {
+                key: 3,
+                image: require('assets/image/special_banner1.png'),
                 link: 'html',
 
             },
@@ -68,7 +94,6 @@ export default {
             item.imageSize = await getImgSize(item.image)
             bannerImgData.value.push(item)
         });
-
         return {
             bannerImg,
             getImgSize,
@@ -76,14 +101,6 @@ export default {
             modules: [Navigation, Pagination, Scrollbar, A11y],
         }
     },
-}
+})
 </script>
 
-<style scoped lang="less">
-#top_banner{
-    .swiper-wrapper{
-        .displayFlex()
-    }
-}
-
-</style>
