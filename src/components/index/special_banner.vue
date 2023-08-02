@@ -13,8 +13,8 @@
         >
             <swiper-slide v-for="item in bannerImgData" :key="item.key">
                 <a :href="item.link">
-                        <img v-lazy="item.image" :alt="item.imageSize.scale"  style="width: 100%;">
-                    </a>
+                    <img v-lazy="item.image" :alt="item.imageSize.scale"  style="width: 100%;">
+                </a>
             </swiper-slide>
         </swiper>
     </div>
@@ -24,6 +24,7 @@
 import { defineComponent,ref } from 'vue'
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation, A11y, Autoplay } from 'swiper/modules';
+import { getImgSize } from 'assets/js/common.js'
 
 export default defineComponent({
     components: {
@@ -76,22 +77,6 @@ export default defineComponent({
             },
         ])
 
-        const getImgSize = url => {
-            let width = window.innerWidth > 750 ? 750 :  window.innerWidth
-            return new Promise(resolve => {
-                let imgObj = new Image()
-                imgObj.src = url
-                imgObj.onload = () => {
-                    let scale = parseFloat(imgObj.height/imgObj.width)
-                    resolve({
-                        width: imgObj.width,
-                        height: imgObj.height,
-                        scale: scale,
-                        style: width * scale
-                    })
-                }
-            })
-        }
         bannerImg.value.forEach(async item => {
             item.imageSize = await getImgSize(item.image)
             bannerImgData.value.push(item)

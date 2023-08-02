@@ -32,7 +32,7 @@
 
 <script>
 import { defineComponent,ref } from "vue";
-import {getWindowType} from 'assets/js/common.js'
+import { isMobile } from 'assets/js/common.js'
 import MeunTop from 'components/header/meunTop.vue'
 
 export default defineComponent({
@@ -48,8 +48,6 @@ export default defineComponent({
     const handleClose = () => {
       navDrawer.value.close()
     }
-
-    const isMobile = getWindowType()
 
     const draweCloseStyle = ref({
         'position' : 'fixed',

@@ -17,7 +17,7 @@
         >
             <swiper-slide v-for="item in pickUpProducts" :key="item.id">
                 <a :href="item.link">
-                    <img :src="item.img" :alt="item.id">
+                    <img v-lazy="item.img" :alt="item.id">
                     <p class="name">{{item.name}}</p>
                     <p class="price">{{item.price}}</p>
                 </a>
@@ -90,8 +90,8 @@ export default defineComponent({
     background: #F8F8F8;
 
     h2{
-        font-size: 16px;
-        font-weight: bold;
+        font-size: 24px;
+        font-weight: 500;
         padding:20px 0 12px;
         text-align: center;
     }
@@ -107,6 +107,10 @@ export default defineComponent({
         background-size: cover;
         width: 188px;
         height: auto;
+
+        @media screen and (min-width: 750px) {
+            width: 360px;
+        }
         
         img {
             display: block;
