@@ -3,6 +3,8 @@
         <Header></Header>
         <TopBanner></TopBanner>
         <SpecialBanner></SpecialBanner>
+        <PickUpItem></PickUpItem>
+        <SearchKeys></SearchKeys>
     </div>
 </template>
 
@@ -11,21 +13,22 @@ import {defineComponent} from 'vue'
 import Header from 'components/header.vue'
 import TopBanner from 'components/index/top_banner.vue'
 import SpecialBanner from 'components/index/special_banner.vue'
+import PickUpItem from 'components/index/pick_up_items.vue'
+import SearchKeys from 'components/index/search_keys.vue'
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
 
 export default defineComponent({
     name: 'home_',
     components: {
         Header,
         TopBanner,
-        SpecialBanner
+        SpecialBanner,
+        PickUpItem,
+        SearchKeys
     },
     setup() {
-
-
         return {
             
         }

@@ -16,8 +16,8 @@
     </el-row>
      <el-drawer style="width: 75%;background: linear-gradient(90deg, rgba(245, 224, 230, 0.85) 0%, rgba(255, 255, 255, 0.85) 100%);"
         v-model="table"
-        direction="ltl"
-        size="100%"
+        direction="ltr"
+        size="75%"
         :with-header="false"
         ref="navDrawer"
       >

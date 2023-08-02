@@ -4,8 +4,11 @@
             :modules="modules"
             :slides-per-view="1"
             navigation
-            @swiper="onSwiper"
-            @slideChange="onSlideChange"
+            autoHeight
+            :autoplay="{
+                delay: 3000,
+                disableOnInteraction: false,
+            }"
         >
             <swiper-slide v-for="item in bannerImgData" :key="item.key">
                 <a :href="item.link">
@@ -19,7 +22,7 @@
 <script>
 import {ref} from 'vue'
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+import { Navigation, A11y ,Autoplay} from 'swiper/modules';
 
 export default {
     components: {
@@ -73,7 +76,7 @@ export default {
             bannerImg,
             getImgSize,
             bannerImgData,
-            modules: [Navigation, Pagination, Scrollbar, A11y],
+            modules: [Navigation, A11y, Autoplay],
         }
     },
 }
