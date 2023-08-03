@@ -1,7 +1,6 @@
 <template>
     <div id="searchKeys">
         <h2>TREND KEYWORD
-            <p>人気のキーワード</p>
         </h2>
         
         <ul>
@@ -63,11 +62,6 @@
             font-size: 24px;
             text-align: center;
             padding: 30px 0 15px;
-
-            p{
-                font-size: 12px;
-                padding-top: 4px
-            }
         }
         ul{
             .displayFlex();

@@ -1,13 +1,12 @@
 <template>
-    <div id="top_banner">
-        <SwiperTools :swiperData="bannerImg" pagination="true"></SwiperTools>
+    <div id="products" class="content">
+        <SwiperTools :swiperData="bannerImgData" pagination="true"></SwiperTools>
     </div>
 </template>
 
 <script>
 import {ref} from 'vue'
 import SwiperTools from 'components/tool/swiperTools.vue'
-
 export default {
     components: {
         SwiperTools
@@ -40,11 +39,6 @@ export default {
 }
 </script>
 
-<style scoped lang="less">
-#top_banner{
-    .swiper-wrapper{
-        .displayFlex()
-    }
-}
+<style lang="less" scoped>
 
 </style>
