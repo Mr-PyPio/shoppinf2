@@ -1,0 +1,84 @@
+@media screen and (min-width: 750px) {
+  .width750 {
+    width: 750px !important;
+  }
+  .transfontCenter {
+    transform: translateX(-50%);
+    left: 50%;
+    top: 0;
+    position: fixed;
+  }
+  .marginCenter {
+    display: block;
+    margin: 0 auto;
+  }
+  body {
+    width: 750px !important;
+    display: block;
+    margin: 0 auto;
+    overflow: unset !important;
+  }
+  #header .el-overlay {
+    width: 750px !important;
+    transform: translateX(-50%);
+    left: 50%;
+    top: 0;
+    position: fixed;
+  }
+}
+.displayFlex {
+  display: flex;
+}
+.bgColorW {
+  background: #fff;
+}
+.displayFlexCen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.overflwText1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.overflwText2 {
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.overflwText3 {
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.overflwText4 {
+  -webkit-line-clamp: 4;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.overflwText5 {
+  -webkit-line-clamp: 5;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+img {
+  width: 100%;
+  height: auto;
+}
+.content {
+  padding-top: 11.2vw;
+}
+@media screen and (min-width: 750px) {
+  .content {
+    padding-top: 93px;
+  }
+}

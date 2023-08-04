@@ -21,9 +21,7 @@ import Ranking from 'components/index/ranking.vue'
 import CategoryImg from 'components/index/categoryImg.vue'
 import NewItem from 'components/index/newItem.vue'
 import SpecialMessage from 'components/index/special_message.vue'
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+
 
 export default defineComponent({
     name: 'home_',

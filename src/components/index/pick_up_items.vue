@@ -42,35 +42,35 @@ export default defineComponent({
         const pickUpProducts = ref([
             {
                 name: '起毛canadaスウェット',
-                link: 'html',
+                link: '/products.html?id=1',
                 img: require('assets/image/Rectangle.png'),
                 price: '￥2,660',
                 id: '10'
             },
             {
                 name: '起毛canadaスウェット',
-                link: 'html',
+                link: '/products.html?id=1',
                 img: require('assets/image/Rectangle.png'),
                 price: '￥2,660',
                 id: '11'
             },
                         {
                 name: '起毛canadaスウェット',
-                link: 'html',
+                link: '/products.html?id=1',
                 img: require('assets/image/Rectangle.png'),
                 price: '￥2,660',
                 id: '12'
             },
                         {
                 name: '起毛canadaスウェット',
-                link: 'html',
+                link: '/products.html?id=1',
                 img: require('assets/image/Rectangle.png'),
                 price: '￥2,660',
                 id: '13'
             },
                         {
                 name: '起毛canadaスウェット',
-                link: 'html',
+                link: '/products.html?id=1',
                 img: require('assets/image/Rectangle.png'),
                 price: '￥2,660',
                 id: '14'

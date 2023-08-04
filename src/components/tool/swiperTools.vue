@@ -26,6 +26,9 @@ import {ref} from 'vue'
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation, A11y ,Autoplay,Pagination,Scrollbar} from 'swiper/modules';
 import { getImgSize } from 'assets/js/common.js'
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 export default {
     components: {
         Swiper,
