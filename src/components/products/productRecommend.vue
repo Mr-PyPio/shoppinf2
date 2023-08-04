@@ -1,15 +1,15 @@
 <template>
-  <div id="app2">
-    <router-view/>
+  <div id="recommend">
+    asdfsadf
   </div>
 </template>
 
 <script>
 export default {
-  
+
 }
 </script>
 
+<style>
 
-
-
+</style>

@@ -1,15 +1,15 @@
 <template>
-  <div id="app2">
-    <router-view/>
+  <div id="reviews">
+    sdfasdfasdf
   </div>
 </template>
 
 <script>
 export default {
-  
+
 }
 </script>
 
+<style>
 
-
-
+</style>

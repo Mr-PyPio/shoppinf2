@@ -18,7 +18,7 @@ const routes = [
     path: '/products.html',
     name: 'products',
     component: Products,
-    props: $route => ({ query: $route.query.id })
+    props: route => ({ query: route.query.id })
   }
 ]
 

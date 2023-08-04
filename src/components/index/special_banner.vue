@@ -1,5 +1,5 @@
 <template>
-    <div id="special_banner" style="margin: 16px 12px;width: calc(100% - 24px)">
+    <div id="special_banner" style="margin: 16px 12px;width: calc(100% - 24px)" :style="{'height': height??'auto'}">
         <swiper
             :modules="modules"
             :slides-per-view="2"
@@ -24,68 +24,31 @@
 import { defineComponent,ref } from 'vue'
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation, A11y, Autoplay } from 'swiper/modules';
-import { getImgSize } from 'assets/js/common.js'
 
 export default defineComponent({
     components: {
         Swiper,
         SwiperSlide,
     },
-    setup() {
-        const bannerImgData = ref([])
-        const bannerImg = ref([
-            {
-                key: 1,
-                image: require('assets/image/special_banner1.png'),
-                link: 'html',
-            },
-            {
-                key: 2,
-                image: require('assets/image/special_banner2.png'),
-                link: 'html',
+    props: {
+        'swiperData' : {
+            type: Array,
+            default: (() => {[]})
+        },
+        'defaultHeight' : {
+            type: String,
+            default: ''
+        }
+    },
+    setup(props) {
+        const bannerImgData = ref(props.swiperData)
 
-            },
-            {
-                key: 3,
-                image: require('assets/image/special_banner1.png'),
-                link: 'html',
+        const height = ref(props.defaultHeight)
 
-            },
-                        {
-                key: 3,
-                image: require('assets/image/special_banner2.png'),
-                link: 'html',
-
-            },
-                        {
-                key: 3,
-                image: require('assets/image/special_banner1.png'),
-                link: 'html',
-
-            },
-                        {
-                key: 3,
-                image: require('assets/image/special_banner2.png'),
-                link: 'html',
-
-            },
-                        {
-                key: 3,
-                image: require('assets/image/special_banner1.png'),
-                link: 'html',
-
-            },
-        ])
-
-        bannerImg.value.forEach(async item => {
-            item.imageSize = await getImgSize(item.image)
-            bannerImgData.value.push(item)
-        });
         return {
-            bannerImg,
-            getImgSize,
             bannerImgData,
             modules: [Navigation, A11y, Autoplay],
+            height
         }
     },
 })

@@ -1,5 +1,5 @@
 <template>
-    <div id="top_banner">
+    <div class="swiper_banner">
         <swiper
             :modules="modules"
             :slides-per-view="num"
@@ -11,10 +11,11 @@
                 delay: 3000,
                 disableOnInteraction: false,
             }"
-        >
+            ref = 'swiperWrapper'
+        >   
             <swiper-slide v-for="item in bannerImgData" :key="item.key">
-                <a :href="item.link">
-                    <img v-lazy="item.image" :alt="item.imageSize.scale"  style="width: 100%;">
+                <a :href="item.link" :style="{width: '100%', height: `${item.imageSize.style}px`,'display': 'block'}">
+                    <img :src="item.image" :alt="item.imageSize.scale"  style="width: 100%;">
                 </a>
             </swiper-slide>
         </swiper>
@@ -76,6 +77,7 @@ export default {
             bannerImgData.value.push(item)
         });
 
+
         return{
             num,
             navigaShow,
@@ -83,7 +85,7 @@ export default {
             modules: [Navigation, A11y, Autoplay,Pagination,Scrollbar],
             scrollShow,
             isLoop,
-            bannerImgData
+            bannerImgData,
         }
     },
 }

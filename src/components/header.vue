@@ -16,7 +16,7 @@
             </a>
         </el-col>
         <el-col :xs="8" :sm="6" :md="8" :lg="9" :xl="11" class="header_logo">
-            <a href=""><img :src="require('assets/image/logo.png')" alt=""></a>
+            <a href="/"><img :src="require('assets/image/logo.png')" alt=""></a>
         </el-col>
         <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1" class="header_right">
             <a href="">
