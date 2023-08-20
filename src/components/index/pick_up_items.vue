@@ -16,10 +16,10 @@
             }"
         >
             <swiper-slide v-for="item in pickUpProducts" :key="item.id">
-                <a :href="item.link">
-                    <img v-lazy="item.img" :alt="item.id">
+                <a :href="'/products.html?id=' + item.id">
+                    <img v-lazy="item.product_img? item.product_img.url:''" :alt="item.id" style="border-radius: 8px;">
                     <p class="name">{{item.name}}</p>
-                    <p class="price">{{item.price}}</p>
+                    <p class="price">￥{{item.price}}</p>
                 </a>
             </swiper-slide>
         </swiper>
@@ -38,44 +38,15 @@ export default defineComponent({
         Swiper,
         SwiperSlide,
     },
-    setup() {
-        const pickUpProducts = ref([
-            {
-                name: '起毛canadaスウェット',
-                link: '/products.html?id=1',
-                img: require('assets/image/Rectangle.png'),
-                price: '￥2,660',
-                id: '10'
-            },
-            {
-                name: '起毛canadaスウェット',
-                link: '/products.html?id=1',
-                img: require('assets/image/Rectangle.png'),
-                price: '￥2,660',
-                id: '11'
-            },
-                        {
-                name: '起毛canadaスウェット',
-                link: '/products.html?id=1',
-                img: require('assets/image/Rectangle.png'),
-                price: '￥2,660',
-                id: '12'
-            },
-                        {
-                name: '起毛canadaスウェット',
-                link: '/products.html?id=1',
-                img: require('assets/image/Rectangle.png'),
-                price: '￥2,660',
-                id: '13'
-            },
-                        {
-                name: '起毛canadaスウェット',
-                link: '/products.html?id=1',
-                img: require('assets/image/Rectangle.png'),
-                price: '￥2,660',
-                id: '14'
-            }
-        ])
+    props: {
+        pickUpData: {
+            type: Array,
+            default: (()=> [])
+        }
+    },
+    setup(props) {
+        const pickUpProducts = ref(props.pickUpData)
+
         
         return {
             pickUpProducts,

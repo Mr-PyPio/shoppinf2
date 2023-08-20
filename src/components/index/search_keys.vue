@@ -4,8 +4,8 @@
         </h2>
         
         <ul>
-            <li v-for="item in keysData" :key="item.id" @click="getSearch(item.name)" >
-                {{item.name}}
+            <li v-for="item in keysData" :key="item.name" @click="getSearch(item.name)" >
+                #{{item.name}}
             </li>
         </ul>
 
@@ -16,42 +16,26 @@
     import {defineComponent, ref} from 'vue'
     import { useRouter } from 'vue-router'
 
-    export default defineComponent({
-        setup() {
-            const router = useRouter()
-            const keysData = ref([
-                {
-                    id: 1,
-                    name: '#VERY掲載アイテム',
-                },
-                {
-                    id: 2,
-                    name: '#シフォン素材ボトム',
-                },
-                {
-                    id: 3,
-                    name: '#Tシャツコレクション',
-                },
-                {
-                    id: 4,
-                    name: '#ボーダーアイテム',
-                },
-                {
-                    id: 5,
-                    name: '#ジレ'
-                }
-            ])
+export default defineComponent({
+    props: {
+        keyWords: {
+            type: Array,
+            default: (() => [])
+        }  
+    },
+    setup(props) {
+        const router = useRouter()
+        const keysData = ref(props.keyWords)
 
-            const getSearch = (key) => {
-                router.push({ path: 'search.html', query: { keys: `${key}` }})
-                
-            }
-
-            return {
-                keysData,
-                getSearch
-            }
+        const getSearch = (key) => {
+            router.push({ path: 'search.html', query: { keys: `${key}` }})
         }
+
+        return {
+            keysData,
+            getSearch
+        }
+    }
     })
 </script>
 
@@ -66,13 +50,14 @@
         ul{
             .displayFlex();
             flex-wrap: @flex_wrap;
+            justify-content: center;
 
             li{
                 display: inline-block;
                 margin: 0 4px 4px 0;
                 height: 32px;
                 line-height: 32px;
-                background: #F2F2F2;
+                background: #ddd;
                 padding:0 12px;
                 font-size: 12px;
             }

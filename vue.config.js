@@ -9,7 +9,7 @@ module.exports = defineConfig({
         ws: true,
         changeOrigin: true,
         pathRewrite: {
-          '^/api': 'http://192.168.0.102:8080'  //路径重写
+          '^/api': 'http://192.168.0.102:8083'  //路径重写
         }
       },
     }

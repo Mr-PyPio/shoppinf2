@@ -4,10 +4,11 @@
         <div v-for="item in data" :key="item.key" >
             <a :href="item.link" class="message_items">
                 <div class="img">
-                    <img v-lazy="item.image" alt="">
+                     <img v-lazy="item.img.url" alt="" :style="{ width: '100%', 'aspect-ratio': item.img.imgMessage.scale }">
                 </div>
-                <div class="text" v-html="item.desc">
+                <div class="text" v-html="item.desc" style="padding-top: 10px">
                 </div>
+
             </a>
         </div>
     </div>
@@ -17,30 +18,14 @@
 import {ref} from 'vue'
 export default {
     name: '_specailMessage',
-    setup() {
-        const data = ref([
-            {
-                'key' : 1,
-                'image' : require('assets/image/message1.png'),
-                'desc' : '<p>sdfsdfsdfsdfsdf</p>',
-                'link' : 'html'
-            },
-            {
-                'key' : 2,
-                'image' : require('assets/image/message2.png'),
-                'desc' : '<p>sdfsdfsdfsdfsdf</p>'
-            },
-            {
-                'key' : 3,
-                'image' : require('assets/image/message3.png'),
-                'desc' : '<p>sdfsdfsdfsdfsdf</p>'
-            },
-            {
-                'key' : 4,
-                'image' : require('assets/image/message4.png'),
-                'desc' : '<p>sdfsdfsdfsdfsdf</p>'
-            },
-        ])
+    props: {
+        blofData: {
+            type: Array,
+            default: (() => [])
+        }
+    },
+    setup(props) {
+        const data = ref(props.blofData)
 
         return {
             data
@@ -72,6 +57,12 @@ export default {
         .text{
             width: calc( 100% - 135px);
             min-height: 120px;
+
+            font-size: 12px;
+            line-height: 1.5em;
+
+            display: flex;
+            align-items: center;
         }
     }
 }

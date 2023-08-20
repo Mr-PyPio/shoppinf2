@@ -1,12 +1,12 @@
 <template>
     <ul>
         <li v-for="item in data" :key="item.id">
-            <a :href="item.link">
+            <a :href="'/products.html?id='+ item.id">
                 <div class="img">
-                    <img v-lazy="item.img" alt="" style="width:100%">
+                    <img v-lazy="item.product_img? item.product_img.url:''" alt="" :style="{'width':'100%','aspect-ratio': item.product_img? item.product_img.imgMessage.scale : 1}">
                 </div>
                 <p class="name" :class="overflwTezt" v-if="showNameNow" :style="nameStyleNow">{{item.name}}</p>
-                <p class="price" :style="priceStyleNow">{{item.price}}</p>
+                <p class="price" :style="priceStyleNow">￥{{item.price}}</p>
                 <p class="reviews" v-if="showReviewNow" :style="reviewsStyleNow">1</p>
                 <slot :items ="item"></slot>
             </a>

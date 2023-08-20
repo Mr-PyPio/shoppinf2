@@ -37,6 +37,11 @@
   justify-content: center;
   align-items: center;
 }
+.displayFlexBew {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .overflwText1 {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -80,5 +85,7 @@ img {
 @media screen and (min-width: 750px) {
   .content {
     padding-top: 93px;
+    width: 750px;
+    margin: 0 auto;
   }
 }

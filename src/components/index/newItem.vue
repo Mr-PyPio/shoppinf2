@@ -15,43 +15,14 @@ export default {
     components: {
         ProductItem
     },
-    setup() {
-        const productList = ref([
-            {
-                name: '「人気位商品レトロファッション」大好評ジッパーヒョウ柄綿コート',
-                link: 'html',
-                img: require('assets/image/Rectangle.png'),
-                price: '￥2,660',
-                id: '10'
-            },
-            {
-                name: '「人気位商品レトロファッション」大好評ジッパーヒョウ柄綿コート',
-                link: 'html',
-                img: require('assets/image/Rectangle.png'),
-                price: '￥2,660',
-                id: '11'
-            },
-                        {
-                name: '「人気位商品レトロファッション」大好評ジッパーヒョウ柄綿コート',
-                link: 'html',
-                img: require('assets/image/Rectangle.png'),
-                price: '￥2,660',
-                id: '12'
-            },
-                        {
-                name: '「人気位商品レトロファッション」大好評ジッパーヒョウ柄綿コート',
-                link: 'html',
-                img: require('assets/image/Rectangle.png'),
-                price: '￥2,660',
-                id: '13'
-            },
-                        {
-                name: '「人気位商品レトロファッション」大好評ジッパーヒョウ柄綿コート',
-                link: 'html',
-                img: require('assets/image/Rectangle.png'),
-                price: '￥2,660',
-                id: '14'
-            }])
+    props: {
+        newProducts: {
+            type: Array,
+            default: (() => [])
+        }
+    },  
+    setup(props) {
+        const productList = ref(props.newProducts)
 
         return {
             productList

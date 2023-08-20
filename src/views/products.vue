@@ -1,49 +1,65 @@
 <template>
-<Default>
-    <div id="products" class="content">
-        <SwiperTools :swiperData="bannerImg" pagination="true"></SwiperTools>
-
-        <div class="productText">
-            <p class="name">長袖 簡約 シンプル 春秋 ハイネック プルオーバー ボーダー Ｔシャツ ポロシャツ ファッション トップス</p>
-            <p class="listPrice">
-                <span>参考価格</span>
-                <span>￥7,496 税込</span>
-            </p>
-            <p class="dpPrice">
-                <span>販売価格</span>
-                <span>￥1,899 税込</span>
-            </p>
+    <Default>
+        <div id="products" v-if="productData" class="content">
+            <el-skeleton style="width: 100%" :loading="loading" animated>
+                <template #template>
+                    <el-skeleton-item variant="image" class="product_img_ver" />
+                    <div style="width: 100%;padding: 0 12px;box-sizing: border-box;">
+                        <el-skeleton-item variant="text" style="width: 100%;margin: 15px 0;height: 18px;" />
+                        <el-skeleton-item variant="text" style="width: 180px;margin: 5px 0;" />
+                        <el-skeleton-item variant="text" style="width: 180px;margin: 5px 0;" />
+                        <el-skeleton-item variant="text" style="width: 100%;margin: 20px 0 0;height: 40px;" />
+                        <el-skeleton-item variant="text" style="width: 100%;margin: 10px 0 25px;height: 40px;" />
+                        <el-skeleton-item variant="text" style="width: 100%;height: 1px;background: #ccc;" />
+                        <el-skeleton-item variant="text" style="width: 100%;height: 20px;margin: 10px 0;" />
+                        <el-skeleton-item variant="text" style="width: 100%;height: 42px;" />
+                        <el-skeleton-item variant="text" style="width: 100%;height: 42px;margin-top: 20px;" />
+                    </div>
+                </template>
+                <template #default>
+                    <SwiperTools :swiperData="bannerImg" pagination="true" type="product"></SwiperTools>
+                    <div class="productText">
+                        <p class="name">{{ productData.name }}</p>
+                        <p class="listPrice">
+                            <span>参考価格</span>
+                            <span>￥{{ productData.list_price }} 税込</span>
+                        </p>
+                        <p class="dpPrice">
+                            <span>販売価格</span>
+                            <span>￥{{ productData.price }} 税込</span>
+                        </p>
+                    </div>
+                    <template v-if="productOption">
+                        <OptionElement :productOption="productOption" :price="productData.price" :productId = "productId" style="margin-bottom: 20px"></OptionElement>
+                    </template>
+                    <Tabs :tabList = "tabList" class="tabs">
+                        <template v-slot:message>
+                            <Message :id="productId"></Message>
+                        </template>
+                        <template v-slot:review>
+                            <Reviews></Reviews>
+                        </template>
+                        <template v-slot:recommend>
+                            <Recommend></Recommend>
+                        </template>
+                    </Tabs>
+                </template>
+            </el-skeleton>
         </div>
-
-        <OptionElement :data="data"></OptionElement>
-
-        <el-affix :offset="42" style="margin-top: 25px">
-            <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick" stretch="true">
-                <el-tab-pane label="商品詳細" name="first">
-                    <Message></Message>
-                </el-tab-pane>
-                <el-tab-pane label="レビュー（）" name="second">
-                    <Reviews></Reviews>
-                </el-tab-pane>
-                <el-tab-pane label="おすすめ商品" name="third">
-                    <Recommend></Recommend>
-                </el-tab-pane>
-            </el-tabs>
-        </el-affix>
-    </div>
-</Default>
+    </Default>
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref,defineAsyncComponent } from 'vue'
 import { useRouter } from 'vue-router'
-import SwiperTools from 'components/tool/swiperTools.vue'
-import OptionElement from 'components/products/optionElement.vue'
-import Message from 'components/products/productMessage.vue'
-import Reviews from 'components/products/productReviews.vue'
-import Recommend from 'components/products/productRecommend.vue'
-
+import { getProductDetail } from 'assets/js/common.js'
 import Default from 'components/tool/default.vue'
+import SwiperTools from 'components/tool/swiperTools.vue'
+const Reviews = defineAsyncComponent(() => import('components/products/productReviews.vue'))
+const Message = defineAsyncComponent(() => import('components/products/productMessage.vue'))
+const Recommend = defineAsyncComponent(() => import('components/products/productRecommend.vue'))
+const OptionElement = defineAsyncComponent(() => import('components/products/optionElement.vue'))
+const Tabs = defineAsyncComponent(() => import('components/tool/tabs.vue'))
 export default {
     name: '_products',
     components: {
@@ -52,41 +68,55 @@ export default {
         Default,
         Reviews,
         Message,
-        Recommend
+        Recommend,
+        Tabs
     },
     setup() {
-        const activeName = ref('first')
-        const handleClick = () => {
-
-        }
-        const bannerImg = ref([
+        const loading = ref(true)
+        const tabList = ref([
             {
-                key: 1,
-                image: require('assets/image/indexBanner.gif'),
-                link: 'html',
+                name: '商品詳細',
+                code: 'message'
             },
             {
-                key: 2,
-                image: require('assets/image/indexBanner.gif'),
-                link: 'html',
-
+                name: 'レビュー',
+                code: 'review'
             },
             {
-                key: 3,
-                image: require('assets/image/indexBanner.gif'),
-                link: 'html',
-
-            },
+                name: 'おすすめ商品',
+                code: 'recommend'
+            }
         ])
-
+        const bannerImg = ref([])
+        const productData = ref([])
         const router = useRouter()
-        const productId = router.currentRoute.value.query.id
+        const productId = ref(router.currentRoute.value.query.id)
+        const productOption = ref([])
 
+        const init = async () => {
+            const data = await getProductDetail(productId.value)
+            console.log(data)
+            productData.value = data.data[0]
+            if (productData.value.product_img) {
+                bannerImg.value = JSON.parse(productData.value.product_img)
+                bannerImg.value.forEach(items => {
+                    items.img = {
+                        imgMessage:  items.imgMessage,
+                        url: items.url,
+                    }
+                })
+            }
+            productOption.value = data.data[0].option
+            loading.value = false
+        }
+        init()
         return {
             bannerImg,
+            productData,
+            productOption,
+            loading,
             productId,
-            activeName,
-            handleClick
+            tabList
         }
     },
 }
@@ -132,6 +162,16 @@ export default {
             }
         }
     }
+
+    .product_img_ver{
+        width: 100vw;
+        height: 100vw;
+
+        @media screen and (min-width: 750px) {
+            width: 750px;
+            height: 750px;
+        }
+    }
 }
 
 </style>
@@ -153,7 +193,15 @@ export default {
         background-color: #B78B93;
     }
 }
-.el-tabs__nav-wrap::after{
 
+#tabs{
+    ul li.tabItems{
+        border-bottom: 2px solid #ccc;
+
+
+        &.active{
+            border-bottom: 2px solid #000;
+        }
+    }
 }
 </style>

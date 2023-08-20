@@ -5,16 +5,14 @@
             <ul v-if=" key % 2 == 1">
                 <li v-for="item in items" :key="item.key" >
                     <a :href="item.link">
-                        <img v-lazy="item.image" alt="" style="width: 100%">
-                        <p>{{item.desc}}</p>
+                        <img v-lazy="item.img.url" alt="" :style="{ width: '100%', 'aspect-ratio': item.img.imgMessage.scale }">
                     </a>
                 </li>
             </ul>
             <ul v-if=" key % 2 == 0">
                 <li v-for="item in items" :key="item.key" >
                     <a :href="item.link">
-                        <img v-lazy="item.image" alt="" style="width: 100%">
-                        <p>{{item.desc}}</p>
+                        <img v-lazy="item.img.url" alt="" :style="{width: '100%','aspect-ratio':item.img.imgMessage.scale}">
                     </a>
                 </li>
             </ul>
@@ -26,51 +24,14 @@
 import {ref} from 'vue'
 export default {
     name: '_category',
-    setup() {
-        const data = ref([
-            [{
-                key: 1,
-                image: require('assets/image/cate1.png'),
-                link: 'html',
-                desc: 'TOP'
-            },
-            {
-                key: 2,
-                image: require('assets/image/cate2.png'),
-                link: 'html',
-                desc: 'TOP'
-
-            },
-            {
-                key: 3,
-                image: require('assets/image/cate3.png'),
-                link: 'html',
-                desc: 'TOP'
-
-            }],
-            [{
-                key: 4,
-                image: require('assets/image/cate4.png'),
-                link: 'html',
-                desc: 'TOP'
-
-            },
-            {
-                key: 5,
-                image: require('assets/image/cate5.png'),
-                link: 'html',
-                desc: 'TOP'
-
-            },
-            {
-                key: 6,
-                image: require('assets/image/cate6.png'),
-                link: 'html',
-                desc: 'TOP'
-
-            }]
-        ])
-        
+    props: {
+        categoryData: {
+            type: Array,
+            default: (() => [])
+        }
+    },
+    setup(props) {
+        const data = ref(props.categoryData)
         return {
             data,
         }
