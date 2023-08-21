@@ -15,6 +15,7 @@ const PaymentSuccess = () => import('components/checkout/paySuccess.vue')
 const PaymentFailure = () => import('components/checkout/payFailure.vue')
 const Address = () => import('components/personal/address.vue')
 const AddressChange = () => import('components/personal/addressChange.vue')
+const OrderList = () => import('components/personal/orderList.vue')
 
 const routes = [
   {
@@ -71,6 +72,21 @@ const routes = [
     component: Personal,
   },
   {
+    path: '/address.html',
+    name: 'address',
+    component: Address,
+  },
+  {
+    path: '/addressChange.html',
+    name: 'addressChange',
+    component: AddressChange,
+  },
+  {
+    path: '/orderList.html',
+    name: 'orderList',
+    component: OrderList,
+  },
+  {
     path: '/checkout.html',
     name: 'checkout',
     component: Checkout,
@@ -84,16 +100,6 @@ const routes = [
     path: '/payment_failure.html',
     name: 'paymentFailure',
     component: PaymentFailure,
-  },
-  {
-    path: '/address.html',
-    name: 'address',
-    component: Address,
-  },
-  {
-    path: '/addressChange.html',
-    name: 'addressChange',
-    component: AddressChange,
   },
   {
     path: '/404',

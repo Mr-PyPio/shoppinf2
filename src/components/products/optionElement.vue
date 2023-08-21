@@ -292,7 +292,7 @@ export default {
 
         @media screen and (min-width: 750px) {
             left: 50%;
-            transform: translateX(50%);
+            transform: translateX(-50%);
             width: 750px;
             
         }

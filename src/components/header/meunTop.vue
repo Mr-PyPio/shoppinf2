@@ -154,11 +154,18 @@ export default ({
         flex-wrap: @flex_wrap;
         margin-bottom: 17px;
         padding: 0 16px;
+        @media screen and (min-width: 750px) {
+           padding: 0 32px;
+        }
 
         li {
             a{
                 display: block;
                 width: 80px;
+
+                @media screen and (min-width: 750px) {
+                    width:160px
+                }
                 
                 img{width: 100%;}
             }

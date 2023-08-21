@@ -24,6 +24,7 @@
     left: 50%;
     top: 0;
     position: fixed;
+    height: 100vh;
   }
 }
 .displayFlex {

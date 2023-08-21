@@ -15,8 +15,10 @@
 
         <ul class="personPage">
           <li>
+            <router-link to="/orderList.html">
             <img :src="require('assets/image/carbon_time.png')" alt="">
             <p>ご注文履歴</p>
+            </router-link>
           </li>
           <li>
             <img :src="require('assets/image/clarity_data-cluster-outline-badged.png')" alt="">

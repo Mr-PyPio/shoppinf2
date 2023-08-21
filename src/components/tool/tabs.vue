@@ -31,7 +31,8 @@ export default {
     const TabItemsTab = ref(null)
     console.log(TabItemsTab)
     const list = ref(props.tabList)
-    const liWidth =  computed(() => Math.floor(window.innerWidth / list.value.length))
+    const windowWidth = window.innerWidth > 750 ? 750: window.innerWidth
+    const liWidth = computed(() => Math.floor(windowWidth / list.value.length))
     const liStyle = reactive({
       'width': liWidth.value + 'px'
     })
@@ -71,6 +72,10 @@ export default {
       color: #222;
       text-align: center;
       padding: 8px 0;
+      @media screen and (min-width: 750px) {
+        padding: 16px 0;
+        font-size: 16px;
+      }
     }
   }
 

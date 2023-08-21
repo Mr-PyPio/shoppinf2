@@ -52,6 +52,10 @@ export default {
             width: 120px;
             height: auto;
             margin-right: 15px;
+
+            @media screen and (min-width:750px) {
+                width: 240px;
+            }
         }
 
         .text{

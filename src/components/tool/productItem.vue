@@ -88,6 +88,10 @@ ul{
     flex-wrap: @flex_wrap;
     justify-content: space-between;
 
+    @media screen and (min-width: 750px) {
+        padding: 0 32px !important
+    }
+
     li{
         width: 46vw;
         margin-bottom: 15px;

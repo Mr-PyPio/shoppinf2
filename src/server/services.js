@@ -731,14 +731,10 @@ exports.getCartList = (req, res) => {
         }
         if (product_list_id.length > 0) {
           product_list = await getArrProducts(JSON.stringify(product_list_id))
-          product_list.forEach(item => {
-            listArr.forEach(item2 => {
-              if (item.id == item2.product_id) {
-                item.size = item2.size
-                item.color = item2.color
-                item.qty = item2.qty
-              }
-            })
+          product_list.forEach((item, key) => {
+            item.size = listArr[key].size
+            item.color = listArr[key].color
+            item.qty = listArr[key].qty
           })
         }
         return res.json({
@@ -1083,3 +1079,4 @@ exports.addressDelete = (req, res) => {
     }
   })
 }
+

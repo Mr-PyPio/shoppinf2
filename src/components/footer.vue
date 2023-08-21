@@ -47,6 +47,11 @@ export default {
     border-top: 1px solid #ddd;
     margin: 40px 0 20px;
 
+    @media screen and (min-width: 750px) {
+        width: 750px;
+        margin: 0 auto;
+    }
+
     .shareIcon{
         margin-top: 20px;
         .displayFlexCen();

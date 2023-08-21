@@ -245,7 +245,7 @@ export default {
         { required: true, message: 'Please input Activity street', trigger: 'change' }
       ]
     })
-    const addressCchange = (id) => {
+    const addressChange = (id) => {
       userAddress.value.forEach(item => {
         if (item.id == id) {
           const defaultMessage = {
@@ -291,14 +291,14 @@ export default {
       streetChange,
       userAddress,
       radio1,
-      addressCchange,
+      addressChange,
       loading
     }
   },
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 #address{
   padding: 0 16px;
 
